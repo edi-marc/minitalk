@@ -6,13 +6,19 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:37:32 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/21 14:04:52 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:56:07 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **	DESCRIPTION:
 **		Fun with Unix Signals.
+**		Using both signal() and sigaction()
+**
+**		using SA_RESTART on sigaction() to mimic the behaviour of signal()
+**
+**		It's recommended to use sigaction() instead of signal() 
+**
 **		To terminate this process send him SIGKILL:
 **			kill [PID]
 */
@@ -36,9 +42,14 @@ void	handler_sig(int num)
 
 int	main(void)
 {
+	struct sigaction	sa;
+
+	sa.sa_handler = handler_sig;
+	sa.sa_flags = SA_RESTART;
 	signal(SIGINT, handler_sig);
-	signal(SIGQUIT, handler_sig);
+	sigaction(SIGQUIT, &sa, NULL);
 	signal(SIGTSTP, handler_sig);
+	signal(SIGKILL, handler_sig);
 	while (1)
 	{
 		printf("I'm running! -- PID = %d\n", getpid());
