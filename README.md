@@ -9,4 +9,4 @@ See the subjects for further information
 
 #### Using Unix-signals
 
-[Here](Resources/test_signals.c) you can find a simple program to understand signals.
+[Here](Resources/test_signal.c) you can find a simple program to understand signals.
