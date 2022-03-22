@@ -6,18 +6,34 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:51:03 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/22 19:00:20 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/22 19:13:11 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+static void	write_sig(int num)
+{
+	char	*sig;
+
+	sig = ft_itoa(num);
+	if (!sig)
+		exit(EXIT_FAILURE);
+	ft_putendl_fd(sig, STDOUT_FILENO);
+}
+
 static void	handler_sig(int num)
 {
 	if (num == SIGUSR1)
+	{
 		write(STDOUT_FILENO, "OK_SIGUSR1\n", 11);
+		write_sig(SIGUSR1);
+	}
 	else if (num == SIGUSR2)
+	{
 		write(STDOUT_FILENO, "OK_SIGUSR2\n", 11);
+		write_sig(SIGUSR2);
+	}
 }
 
 int	main(void)
