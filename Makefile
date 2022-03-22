@@ -6,7 +6,7 @@
 #    By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 20:13:33 by edi-marc          #+#    #+#              #
-#    Updated: 2022/03/22 14:28:59 by edi-marc         ###   ########.fr        #
+#    Updated: 2022/03/22 19:25:18 by edi-marc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ INCLUDE_DIR = includes
 
 OBJS = $(U_SRCS:.c=.o)
 
-all: $(SERVER)
+all: $(SERVER) $(CLIENT)
 
 .c.o:
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $(<:.c=.o)
@@ -40,6 +40,10 @@ all: $(SERVER)
 $(SERVER): $(OBJS)
 	@echo "[server compilation...]"
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
+
+$(CLIENT): $(OBJS) $(SERVER)
+	@echo "[client compilation...]"
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(CLIENT)
 	make clean
 
 clean:
@@ -48,7 +52,7 @@ clean:
 
 fclean: clean
 	@echo "[hard cleaning...]"
-	$(RM) $(SERVER)
+	$(RM) $(SERVER) $(CLIENT)
 
 re: fclean all
 
