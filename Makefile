@@ -6,14 +6,15 @@
 #    By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 20:13:33 by edi-marc          #+#    #+#              #
-#    Updated: 2022/03/21 20:45:18 by edi-marc         ###   ########.fr        #
+#    Updated: 2022/03/22 14:28:59 by edi-marc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER = server 
 CLIENT = client
 
-SRCS = 
+SRCS =	ft_strlen.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
+		ft_itoa.c ft_calloc.c ft_bzero.c ft_memset.c \
 
 U_SRCS = $(addprefix utils/, $(SRCS))
 
@@ -25,26 +26,30 @@ CC = gcc
 	
 RM = /bin/rm -f
 
-CFLAGS = -Wall -Wextra -Werror	
+CFLAGS = -Wall -Wextra -Werror
+
+INCLUDE_DIR = includes
+
+OBJS = $(U_SRCS:.c=.o)
 
 all: $(SERVER)
 
-$(SERVER):
-	$(CC) $(CFLAGS) $(U_SRCS) $(S_SRCS)  
-	@make clean	
+.c.o:
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $(<:.c=.o)
+
+$(SERVER): $(OBJS)
+	@echo "[server compilation...]"
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
+	make clean
 
 clean:
-	@$(RM) $(OBJS) $(BOBJS)
+	@echo "[cleaning...]"
+	$(RM) $(OBJS)
 
 fclean: clean
-	@$(RM) $(NAME)
-
-bonus: $(OBJS) $(BOBJS) $(INCLUDE)
-	@$(LIB) $(NAME) $(OBJS) $(BOBJS)
-	@make clean
+	@echo "[hard cleaning...]"
+	$(RM) $(SERVER)
 
 re: fclean all
-
-bre: fclean bonus
 
 .PHONY: all clean fclean re bonus bre

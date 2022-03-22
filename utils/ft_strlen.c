@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 19:51:03 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/22 14:43:54 by edi-marc         ###   ########.fr       */
+/*   Created: 2021/01/11 17:41:07 by edi-marc          #+#    #+#             */
+/*   Updated: 2022/03/22 13:57:17 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	main(void)
+size_t	ft_strlen(const char *s)
 {
-	char	*pid;
+	size_t	i;
 
-	pid = ft_itoa(getpid());
-	if (!pid)
-		exit(EXIT_FAILURE);
-	ft_putendl_fd(pid, STDOUT_FILENO);
-	free(pid);
-	exit(EXIT_SUCCESS);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

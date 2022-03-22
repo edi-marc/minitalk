@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 19:51:03 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/22 14:43:54 by edi-marc         ###   ########.fr       */
+/*   Created: 2021/01/25 15:20:03 by edi-marc          #+#    #+#             */
+/*   Updated: 2022/03/22 13:58:06 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	main(void)
+void	ft_putchar_fd(char c, int fd)
 {
-	char	*pid;
-
-	pid = ft_itoa(getpid());
-	if (!pid)
-		exit(EXIT_FAILURE);
-	ft_putendl_fd(pid, STDOUT_FILENO);
-	free(pid);
-	exit(EXIT_SUCCESS);
+	write(fd, &c, 1);
 }
