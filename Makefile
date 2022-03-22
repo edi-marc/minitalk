@@ -6,7 +6,7 @@
 #    By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 20:13:33 by edi-marc          #+#    #+#              #
-#    Updated: 2022/03/22 19:25:18 by edi-marc         ###   ########.fr        #
+#    Updated: 2022/03/22 21:30:16 by edi-marc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(SERVER): $(OBJS)
 
 $(CLIENT): $(OBJS) $(SERVER)
 	@echo "[client compilation...]"
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(CLIENT)
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
 	make clean
 
 clean:

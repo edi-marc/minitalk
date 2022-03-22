@@ -6,7 +6,7 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:53:10 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/22 14:26:56 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:29:01 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,6 @@ char	*ft_itoa(int n);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
+int		ft_isdigit(int c);
+int		ft_atoi_s(const char *str);
 #endif
