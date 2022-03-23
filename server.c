@@ -6,34 +6,43 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:51:03 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/22 19:25:12 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/23 22:23:13 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	write_sig(int num)
+static char	decode_char(int sig)
 {
-	char	*sig;
+	static char	c;
 
-	sig = ft_itoa(num);
-	if (!sig)
-		exit(EXIT_FAILURE);
-	ft_putendl_fd(sig, STDOUT_FILENO);
+	c = (c << 1);
+	if (sig == SIGUSR2)
+		c | 1;
+	return (c);
 }
 
-static void	handler_sig(int num)
+static int	decode_char(int sig)
 {
-	if (num == SIGUSR1)
+	static int	j;
+	static char	c;
+
+	if (j < 8)
 	{
-		write(STDOUT_FILENO, "OK_SIGUSR1\n", 11);
-		write_sig(SIGUSR1);
+		decode_sig(sig);
+		j++;
 	}
-	else if (num == SIGUSR2)
-	{
-		write(STDOUT_FILENO, "OK_SIGUSR2\n", 11);
-		write_sig(SIGUSR2);
-	}
+}
+
+
+static void	decode_str(int sig)
+{
+
+}
+
+static void	handler_sig(int sig)
+{
+	decode_str(sig);
 }
 
 int	main(void)
