@@ -6,7 +6,7 @@
 #    By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 20:13:33 by edi-marc          #+#    #+#              #
-#    Updated: 2022/03/22 21:30:16 by edi-marc         ###   ########.fr        #
+#    Updated: 2022/03/23 14:54:41 by edi-marc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SERVER = server
 CLIENT = client
 
 SRCS =	ft_strlen.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-		ft_itoa.c ft_calloc.c ft_bzero.c ft_memset.c \
+		ft_itoa.c ft_calloc.c ft_bzero.c ft_memset.c ft_atoi_s.c \
+		ft_isdigit.c \
 
 U_SRCS = $(addprefix utils/, $(SRCS))
 

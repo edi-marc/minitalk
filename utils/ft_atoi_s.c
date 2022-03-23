@@ -6,7 +6,7 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:00:02 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/22 23:29:31 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:12:54 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	long int	calculate(const char *str)
 		nbr = nbr + (k - 48);
 		str++;
 	}
-	if (!(ft_isdigit(*str)))
+	if (!(ft_isdigit(*str)) && *str)
 		nbr = 0;
 	return (nbr);
 }
