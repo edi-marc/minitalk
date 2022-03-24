@@ -6,7 +6,7 @@
 #    By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 20:13:33 by edi-marc          #+#    #+#              #
-#    Updated: 2022/03/24 19:49:01 by edi-marc         ###   ########.fr        #
+#    Updated: 2022/03/24 21:59:20 by edi-marc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,10 @@ SRCS =	ft_strlen.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 U_SRCS = $(addprefix utils/, $(SRCS))
 
 S_SRCS = server.c
+
+S_SRCS_B = bonus/server_bonus.c
+
+C_SRCS_B = bonus/client_bonus.c
 
 C_SRCS = client.c
 
@@ -60,6 +64,13 @@ fclean: clean
 
 re: fclean all
 
+bonus: fclean $(OBJS)
+	@echo "[server bonus compilation...]"
+	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(S_SRCS_B) $(OBJS) -o $(SERVER) 
+	@echo "[client bonus compilation...]"
+	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(C_SRCS_B) $(OBJS) -o $(CLIENT)
+	@make clean
+
 debug: fclean $(OBJS)
 	@$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
 	@$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
@@ -68,4 +79,4 @@ debug: fclean $(OBJS)
 cdebug: fclean
 	@$(RM) -r *.dSYM
 
-.PHONY: all clean fclean re bonus bre debug cdebug
+.PHONY: all clean fclean re bonus debug cdebug
