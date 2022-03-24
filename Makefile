@@ -6,7 +6,7 @@
 #    By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 20:13:33 by edi-marc          #+#    #+#              #
-#    Updated: 2022/03/23 14:54:41 by edi-marc         ###   ########.fr        #
+#    Updated: 2022/03/24 18:02:25 by edi-marc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CLIENT = client
 
 SRCS =	ft_strlen.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 		ft_itoa.c ft_calloc.c ft_bzero.c ft_memset.c ft_atoi_s.c \
-		ft_isdigit.c \
+		ft_isdigit.c ft_strlcat.c ft_str_c_join.c send_char.c \
+		decode_char.c \
 
 U_SRCS = $(addprefix utils/, $(SRCS))
 
@@ -28,6 +29,8 @@ CC = gcc
 RM = /bin/rm -f
 
 CFLAGS = -Wall -Wextra -Werror
+
+CFLAGS_D = -Wall -Wextra -Werror -g 
 
 INCLUDE_DIR = includes
 
@@ -57,4 +60,12 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus bre
+debug: fclean $(OBJS)
+	$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
+	$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
+	make clean
+
+cdebug: fclean
+	$(RM) -r *.dSYM
+
+.PHONY: all clean fclean re bonus bre debug cdebug

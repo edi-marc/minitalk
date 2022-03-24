@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_str_c_join.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 19:34:59 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/24 11:59:32 by edi-marc         ###   ########.fr       */
+/*   Created: 2022/03/24 14:16:56 by edi-marc          #+#    #+#             */
+/*   Updated: 2022/03/24 14:30:54 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static int	send_string(char *str, pid_t pid)
+char	*ft_str_c_join(char const *str, char c)
 {
-	int	i;
+	char	*p;
+	size_t	len;
 
-	i = 0;
-	while (*str && (i == 0))
-		i = send_char(*str++, pid);
-	i = send_char('\0', pid);
-	return (i);
-}
-
-int	main(int argc, char **argv)
-{
-	pid_t	pid;
-	int		i;
-
-	if (argc == 3)
+	p = NULL;
+	if (str)
 	{
-		pid = ft_atoi_s(argv[1]);
-		if (!(pid > 0))
-			exit(EXIT_FAILURE);
-		i = send_string(argv[2], pid);
-		if (i == 0)
+		len = ft_strlen(str);
+		p = ft_calloc(len + 2, sizeof(*p));
+		if (p)
 		{
-			exit(EXIT_SUCCESS);
+			ft_strlcat(p, str, len + 1);
+			p[len] = c;
 		}
-		exit(EXIT_FAILURE);
 	}
-	else
-		exit(EXIT_FAILURE);
+	return (p);
 }
