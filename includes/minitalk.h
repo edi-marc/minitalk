@@ -6,7 +6,7 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:53:10 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/24 20:08:30 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/24 22:37:30 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+# define ACK "Message delivered"
 
 size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd);

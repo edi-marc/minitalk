@@ -6,22 +6,26 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:59:51 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/24 22:11:47 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/24 23:31:25 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	set_string(char c)
+static void	set_string(char c, pid_t pid)
 {
 	static char	*str;
 	char		*tmp;
+	int			i;
 
 	if (c == '\0')
 	{
 		ft_putendl_fd(str, STDOUT_FILENO);
 		free(str);
 		str = NULL;
+		i = send_char(c, pid);
+		if (i != 0)
+			exit(EXIT_FAILURE);
 	}
 	else
 	{
@@ -35,22 +39,15 @@ static void	handler_decode(int sig, siginfo_t *info, void *ucontext)
 {
 	static char	c;
 	static int	j;
-	int			i;
 
 	c = decode_char(sig);
 	j++;
 	if (j > 7)
 	{
 		j = 0;
-		set_string(c);
+		set_string(c, info->si_pid);
 	}
-	if (c == '\0')
-	{
-		i = send_char(c, info->si_pid);
-		if (i != 0)
-			exit(EXIT_FAILURE);
-		ucontext = NULL;
-	}
+	ucontext = NULL;
 }
 
 int	main(void)
