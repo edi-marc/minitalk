@@ -6,7 +6,7 @@
 #    By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 20:13:33 by edi-marc          #+#    #+#              #
-#    Updated: 2022/03/24 18:02:25 by edi-marc         ###   ########.fr        #
+#    Updated: 2022/03/24 19:49:01 by edi-marc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,33 +39,33 @@ OBJS = $(U_SRCS:.c=.o)
 all: $(SERVER) $(CLIENT)
 
 .c.o:
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $(<:.c=.o)
 
 $(SERVER): $(OBJS)
 	@echo "[server compilation...]"
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
+	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
 
 $(CLIENT): $(OBJS) $(SERVER)
 	@echo "[client compilation...]"
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
-	make clean
+	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
+	@make clean
 
 clean:
 	@echo "[cleaning...]"
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean: clean
 	@echo "[hard cleaning...]"
-	$(RM) $(SERVER) $(CLIENT)
+	@$(RM) $(SERVER) $(CLIENT)
 
 re: fclean all
 
 debug: fclean $(OBJS)
-	$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
-	$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
-	make clean
+	@$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
+	@$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
+	@make clean
 
 cdebug: fclean
-	$(RM) -r *.dSYM
+	@$(RM) -r *.dSYM
 
 .PHONY: all clean fclean re bonus bre debug cdebug

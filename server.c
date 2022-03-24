@@ -6,11 +6,32 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:51:03 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/24 18:45:59 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:09:37 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+#include <stdio.h>
+
+static void	set_string(char c)
+{
+	static char	*str;
+	char		*tmp;
+
+	if (c == '\0')
+	{
+		ft_putendl_fd(str, STDOUT_FILENO);
+		free(str);
+		str = NULL;
+	}
+	else
+	{
+		tmp = str;
+		str = ft_str_c_join(str, c);
+		free(tmp);
+	}
+}
 
 static void	handler_decode(int sig)
 {
@@ -22,7 +43,7 @@ static void	handler_decode(int sig)
 	if (j > 7)
 	{
 		j = 0;
-		write(1, &c, 1);
+		set_string(c);
 	}
 }
 

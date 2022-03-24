@@ -6,7 +6,7 @@
 /*   By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:16:56 by edi-marc          #+#    #+#             */
-/*   Updated: 2022/03/24 14:30:54 by edi-marc         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:11:21 by edi-marc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ char	*ft_str_c_join(char const *str, char c)
 			ft_strlcat(p, str, len + 1);
 			p[len] = c;
 		}
+	}
+	else
+	{
+		p = ft_calloc(2, sizeof(*p));
+		if (p)
+			p[0] = c;
 	}
 	return (p);
 }
