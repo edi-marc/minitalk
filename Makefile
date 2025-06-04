@@ -6,7 +6,7 @@
 #    By: emdi-mar <emdi-mar@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/04 16:26:45 by emdi-mar          #+#    #+#              #
-#    Updated: 2025/06/04 16:31:09 by emdi-mar         ###   ########.fr        #
+#    Updated: 2025/06/04 16:57:46 by emdi-mar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ $(SERVER): $(OBJS)
 $(CLIENT): $(OBJS) $(SERVER)
 	@echo "[client compilation...]"
 	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
-	@make clean
 
 clean:
 	@echo "[cleaning...]"
@@ -69,12 +68,10 @@ bonus: fclean $(OBJS)
 	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(S_SRCS_B) $(OBJS) -o $(SERVER) 
 	@echo "[client bonus compilation...]"
 	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(C_SRCS_B) $(OBJS) -o $(CLIENT)
-	@make clean
 
 debug: fclean $(OBJS)
 	@$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(S_SRCS) $(OBJS) -o $(SERVER)
 	@$(CC) $(CFLAGS_D) -I$(INCLUDE_DIR) $(C_SRCS) $(OBJS) -o $(CLIENT)
-	@make clean
 
 cdebug: fclean
 	@$(RM) -r *.dSYM
