@@ -5,7 +5,7 @@ The purpose of this project is to code a small data exchange program using UNIX 
 
 See the subjects for further information:
 
-[SUBJECT](Resources/minitalk_subject_3.pdf)
+[SUBJECT](Resources/minitalk_subject_3_2.pdf)
 
 [OLD SUBJECT](Resources/minitalk_v1/en.subject.pdf)
 
