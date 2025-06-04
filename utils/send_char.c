@@ -25,7 +25,7 @@ int	send_char(char c, pid_t pid)
 			i = kill(pid, SIGUSR2);
 		else
 			i = kill(pid, SIGUSR1);
-		usleep(50);
+		usleep(500);
 	}
 	return (i);
 }
