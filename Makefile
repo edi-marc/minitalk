@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edi-marc <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: emdi-mar <emdi-mar@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/21 20:13:33 by edi-marc          #+#    #+#              #
-#    Updated: 2022/03/24 21:59:20 by edi-marc         ###   ########.fr        #
+#    Created: 2025/06/04 16:26:45 by emdi-mar          #+#    #+#              #
+#    Updated: 2025/06/04 16:31:09 by emdi-mar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ C_SRCS_B = bonus/client_bonus.c
 
 C_SRCS = client.c
 
-CC = gcc
+CC = cc
 	
 RM = /bin/rm -f
 

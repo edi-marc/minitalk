@@ -6,7 +6,7 @@
 /*   By: emdi-mar <emdi-mar@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:17:37 by emdi-mar          #+#    #+#             */
-/*   Updated: 2025/06/04 16:17:45 by emdi-mar         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:46:52 by emdi-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static void	handler_decode(int sig, siginfo_t *info, void *ucontext)
 		j = 0;
 		set_string(c, info->si_pid);
 	}
-	ucontext = NULL;
+	if (!ucontext)
+		ucontext = NULL;
 }
 
 int	main(void)
